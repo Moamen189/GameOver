@@ -1,6 +1,10 @@
-﻿namespace GameOver.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace GameOver.Models
 {
-    public class Device
+    public class Device : BaseEntity
     {
+        [MaxLength(255)]
+        public string Icon { get; set; } = string.Empty;
     }
 }
