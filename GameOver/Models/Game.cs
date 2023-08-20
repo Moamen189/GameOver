@@ -1,5 +1,7 @@
 ﻿
 
+using System.ComponentModel.DataAnnotations;
+
 namespace GameOver.Models
 {
     public class Game : BaseEntity
