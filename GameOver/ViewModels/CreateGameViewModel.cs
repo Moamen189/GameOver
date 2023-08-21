@@ -13,6 +13,7 @@
 		public int CategoryId { get; set; }
 
 		public List<int> SelectedDevices { get; set; } = new List<int>();
+
 		public IFormFile Cover { get; set; } = default!;
 
 	}
