@@ -10,8 +10,6 @@ This repository contains a simple MVC (Model-View-Controller) application that p
 - [Features](#features)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
-
 ## Introduction
 
 This MVC application demonstrates a basic implementation of managing game categories using the ViewModel pattern. The application allows users to perform CRUD operations on different game categories.
