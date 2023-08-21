@@ -10,7 +10,7 @@ namespace GameOver.ViewModels
 
 		[Display(Name = "Category")]
 		public int CategoryId { get; set; }
-        [Display(Name = "Devices")]
+        [Display(Name = " Supported Devices")]
 
         public List<int> SelectedDevices { get; set; } = new List<int>();
 
