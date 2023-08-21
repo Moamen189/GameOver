@@ -7,9 +7,12 @@ namespace GameOver.ViewModels
 
 		[MaxLength(250)]
 		public string Name { get; set; } = string.Empty;
-		public int CategoryId { get; set; }
 
-		public List<int> SelectedDevices { get; set; } = new List<int>();
+		[Display(Name = "Category")]
+		public int CategoryId { get; set; }
+        [Display(Name = "Devices")]
+
+        public List<int> SelectedDevices { get; set; } = new List<int>();
 
 		//for Selection by IEnumrable
         public IEnumerable<SelectListItem> Categories { get; set; } = Enumerable.Empty<SelectListItem>();
