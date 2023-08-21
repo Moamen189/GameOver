@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
 
 namespace GameOver.Controllers
 {
@@ -8,10 +8,11 @@ namespace GameOver.Controllers
         {
             return View();
         }
-
+        [HttpGet]
 
         public IActionResult Create()
         {
+            CreateGameViewModel model = new CreateGameViewModel();
             return View();
         }
     }
