@@ -68,10 +68,3 @@ Contributions to enhance the functionality, fix issues, or improve the code stru
 3. Make your changes and commit them with descriptive commit messages.
 4. Push your changes to your fork.
 5. Create a pull request to the main repository.
-
-
-Feel free to use, modify, and distribute the code as permitted by the license.
-
----
-
-Happy coding!
