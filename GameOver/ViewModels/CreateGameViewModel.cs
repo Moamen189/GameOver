@@ -11,6 +11,8 @@ namespace GameOver.ViewModels
 
 		public List<int> SelectedDevices { get; set; } = new List<int>();
 
+		//for Selection by IEnumrable
+
         public IEnumerable<SelectListItem> Categories { get; set; } = Enumerable.Empty<SelectListItem>();
 
 		public IEnumerable<SelectListItem> Devices { get; set; } = Enumerable.Empty<SelectListItem>();
