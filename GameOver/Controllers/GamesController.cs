@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GameOver.Controllers
 {
@@ -38,7 +36,16 @@ namespace GameOver.Controllers
 
         public IActionResult Create(CreateGameViewModel model)
         {
-            return View();
+            if (!ModelState.IsValid) {
+
+                model.Categories = context.Categories.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name, })
+                .OrderBy(x => x.Text)
+                .ToList();
+
+                model.Devices = context.Devices.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name, }).ToList();
+                return View(model);
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }
