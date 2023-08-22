@@ -1,15 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using GameOver.Services;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GameOver.Controllers
 {
     public class GamesController : Controller
     {
         private readonly ApplicationDbContext context;
+		private readonly IDevicesService devicesService;
+		private readonly ICategoriesService categoriesService;
 
-        public GamesController(ApplicationDbContext context)
+		public GamesController(ApplicationDbContext context , IDevicesService devicesService , IGamesService gamesService , ICategoriesService categoriesService)
         {
             this.context = context;
-        }
+			this.devicesService = devicesService;
+			this.categoriesService = categoriesService;
+		}
         public IActionResult Index()
         {
             return View();

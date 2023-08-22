@@ -2,7 +2,7 @@
 
 namespace GameOver.Services
 {
-	public class DevicesService : IDevicesService
+	public class DevicesService : IDevicesService 
 	{
 		private readonly ApplicationDbContext context;
 

@@ -1,9 +1,15 @@
 
+using GameOver.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 var ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("No Connection String was found");
+builder.Services.AddScoped<IGamesService , GamesService>();
+builder.Services.AddScoped<IDevicesService, DevicesService>();
+builder.Services.AddScoped<ICategoriesService, CategoriesService>();
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(ConnectionString));
 builder.Services.AddControllersWithViews();
