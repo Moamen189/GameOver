@@ -25,6 +25,8 @@ namespace GameOver.Controllers
                 Categories= context.Categories.Select(c => new SelectListItem { Value = c.Id.ToString() ,  Text = c.Name,})
                 .OrderBy(x => x.Text)
                 .ToList(),
+
+                Devices = context.Devices.Select(x => new SelectListItem { Value = x.Id.ToString() ,Text = x.Name, }).ToList(),
             };
             return View(model);
         }
