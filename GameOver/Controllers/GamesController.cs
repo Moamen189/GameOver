@@ -16,6 +16,8 @@ namespace GameOver.Controllers
         {
             return View();
         }
+
+        //Data Seeeding
         [HttpGet]
 
         public IActionResult Create()
@@ -29,6 +31,13 @@ namespace GameOver.Controllers
                 Devices = context.Devices.Select(x => new SelectListItem { Value = x.Id.ToString() ,Text = x.Name, }).ToList(),
             };
             return View(model);
+        }
+
+        [HttpPost]
+
+        public IActionResult Create(CreateGameViewModel model)
+        {
+            return View();
         }
     }
 }

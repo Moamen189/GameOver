@@ -10,7 +10,7 @@
 </h5>
 
 
-<form asp-controller="Games" enctype="multipart/form-data">
+<form asp-controller="Games" enctype="multipart/form-data">  
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="SelectedDevices" class="form-label mt-4"></label>
-                <select class="form-select" asp-for="SelectedDevices" asp-items="Model.Devices">
+                <select class="form-select" asp-for="SelectedDevices" asp-items="Model.Devices">  
                     <option>Select devices</option>
                 </select>
                 <span asp-validation-for="SelectedDevices" class="text-danger"></span>
