@@ -34,6 +34,7 @@ namespace GameOver.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
 
         public IActionResult Create(CreateGameViewModel model)
         {
