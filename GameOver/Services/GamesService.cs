@@ -19,6 +19,8 @@ namespace GameOver.Services
 		{
 			//guid with extension
 			var CoverName = $"{Guid.NewGuid()}{Path.GetExtension(model.Cover.FileName)}";
+
+			var path = Path.Combine(_ImagePath , CoverName) ;
 		}
 	}
 }
