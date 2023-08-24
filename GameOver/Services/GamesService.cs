@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using GameOver.Models;
+using Microsoft.AspNetCore.Hosting;
 
 namespace GameOver.Services
 {
@@ -15,12 +16,30 @@ namespace GameOver.Services
 			this.webHostEnvironment = webHostEnvironment;
 			_ImagePath = $"{webHostEnvironment.WebRootPath}/assets/images/games";
         }
-        public Task Create(CreateGameViewModel model)
+        public async Task Create(CreateGameViewModel model)
 		{
 			//guid with extension
 			var CoverName = $"{Guid.NewGuid()}{Path.GetExtension(model.Cover.FileName)}";
 
 			var path = Path.Combine(_ImagePath , CoverName) ;
+
+			using var stream = File.Create(path) ;
+
+			await model.Cover.CopyToAsync(stream) ;
+
+			stream.Dispose() ;
+
+			Game game = new()
+			{
+				Name = model.Name,
+				Description = model.Description,
+				Cover = CoverName,
+				CategoryId = model.CategoryId,
+				Devices = model.SelectedDevices.Select(D => new GameDevice { DeviceId = D}).ToList()
+			};
+			context.Add(game) ;
+			context.SaveChanges() ;	
+				 
 		}
 	}
 }

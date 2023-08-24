@@ -7,12 +7,14 @@ namespace GameOver.Controllers
     {
         private readonly ApplicationDbContext context;
 		private readonly IDevicesService devicesService;
+		private readonly IGamesService gamesService;
 		private readonly ICategoriesService categoriesService;
 
 		public GamesController(ApplicationDbContext context , IDevicesService devicesService , IGamesService gamesService , ICategoriesService categoriesService)
         {
             this.context = context;
 			this.devicesService = devicesService;
+			this.gamesService = gamesService;
 			this.categoriesService = categoriesService;
 		}
         public IActionResult Index()
@@ -23,7 +25,7 @@ namespace GameOver.Controllers
         //Data Seeeding
         [HttpGet]
 
-        public IActionResult Create()
+        public  IActionResult Create()
         {
             CreateGameViewModel model = new CreateGameViewModel()
             {
@@ -39,7 +41,7 @@ namespace GameOver.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Create(CreateGameViewModel model)
+        public async Task<IActionResult> Create(CreateGameViewModel model)
         {
             if (!ModelState.IsValid) {
 
@@ -50,6 +52,7 @@ namespace GameOver.Controllers
                 model.Devices = context.Devices.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name, }).ToList();
                 return View(model);
             }
+            await gamesService.Create(model);
             return RedirectToAction(nameof(Index));
         }
     }
