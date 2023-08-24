@@ -39,6 +39,7 @@ namespace GameOver.Controllers
         }
 
         [HttpPost]
+        // To Validate token Handelar
         [ValidateAntiForgeryToken]
 
         public async Task<IActionResult> Create(CreateGameViewModel model)
