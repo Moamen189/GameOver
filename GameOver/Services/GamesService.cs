@@ -17,7 +17,8 @@ namespace GameOver.Services
         }
         public Task Create(CreateGameViewModel model)
 		{
-			throw new NotImplementedException();
+			//guid with extension
+			var CoverName = $"{Guid.NewGuid()}{Path.GetExtension(model.Cover.FileName)}";
 		}
 	}
 }
