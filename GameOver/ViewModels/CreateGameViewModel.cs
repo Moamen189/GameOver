@@ -10,9 +10,9 @@ namespace GameOver.ViewModels
 
 		[Display(Name = "Category")]
 		public int CategoryId { get; set; }
-        [Display(Name = " Supported Devices")]
+		[Display(Name = " Supported Devices")]
 
-        public List<int> SelectedDevices { get; set; } = new List<int>();
+		public List<int> SelectedDevices { get; set; } = default!;
 
 		//for Selection by IEnumrable
         public IEnumerable<SelectListItem> Categories { get; set; } = Enumerable.Empty<SelectListItem>();

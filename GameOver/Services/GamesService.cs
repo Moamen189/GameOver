@@ -27,8 +27,6 @@ namespace GameOver.Services
 
 			await model.Cover.CopyToAsync(stream) ;
 
-			stream.Dispose() ;
-
 			Game game = new()
 			{
 				Name = model.Name,
