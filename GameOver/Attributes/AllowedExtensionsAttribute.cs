@@ -1,10 +1,10 @@
 ﻿namespace GameOver.Attributes
 {
-	public class AllowedExtensionsAttributes  : ValidationAttribute
+	public class AllowedExtensionsAttribute  : ValidationAttribute
 	{
 		private readonly string _allowedExtensions;
 
-		public AllowedExtensionsAttributes(string allowedExtensions)
+		public AllowedExtensionsAttribute(string allowedExtensions)
 		{
 			_allowedExtensions = allowedExtensions;
 		}

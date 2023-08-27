@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using GameOver.Attributes;
+using GameOver.Settings;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GameOver.ViewModels
 {
@@ -23,6 +25,8 @@ namespace GameOver.ViewModels
 		public string Description { get; set; } = string.Empty;
 
 		//form validation
+		[AllowedExtensions(FileSettings.AllowsExtenstions)]
+		
 		public IFormFile Cover { get; set; } = default!;
 
 	}
