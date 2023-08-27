@@ -1,4 +1,5 @@
 ﻿using GameOver.Models;
+using GameOver.Settings;
 using Microsoft.AspNetCore.Hosting;
 
 namespace GameOver.Services
@@ -14,8 +15,9 @@ namespace GameOver.Services
         {
 			this.context = context;
 			this.webHostEnvironment = webHostEnvironment;
-			_ImagePath = $"{webHostEnvironment.WebRootPath}/assets/images/games";
-        }
+			_ImagePath = $"{webHostEnvironment.WebRootPath}{FileSettings.ImagePath}";
+
+		}
         public async Task Create(CreateGameViewModel model)
 		{
 			//guid with extension
