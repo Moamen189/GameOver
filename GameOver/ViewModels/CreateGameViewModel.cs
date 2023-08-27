@@ -25,7 +25,7 @@ namespace GameOver.ViewModels
 		public string Description { get; set; } = string.Empty;
 
 		//form validation
-		[AllowedExtensions(FileSettings.AllowsExtenstions)]
+		[AllowedExtensions(FileSettings.AllowsExtenstions) , MaxFileSize(FileSettings.MaxFileSizeInBytes)]
 		
 		public IFormFile Cover { get; set; } = default!;
 
