@@ -19,9 +19,9 @@ namespace GameOver.Controllers
 		}
         public IActionResult Index()
         {
-            return View();
+            var games = gamesService.GetAll();
+            return View(games);
         }
-
         //Data Seeeding
         [HttpGet]
 
