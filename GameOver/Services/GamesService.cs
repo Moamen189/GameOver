@@ -18,6 +18,12 @@ namespace GameOver.Services
 			_ImagePath = $"{webHostEnvironment.WebRootPath}{FileSettings.ImagePath}";
 
 		}
+
+        public IEnumerable<Game> GetAll()
+        {
+            return context.Games.AsNoTracking().ToList();
+			
+        }
         public async Task Create(CreateGameViewModel model)
 		{
 			//guid with extension
@@ -41,5 +47,7 @@ namespace GameOver.Services
 			context.SaveChanges() ;	
 				 
 		}
-	}
+
+
+    }
 }

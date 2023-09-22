@@ -1,4 +1,5 @@
 ﻿using GameOver.Models;
+using GameOver.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +8,18 @@ namespace GameOver.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IGamesService gamesService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger , IGamesService gamesService)
         {
             _logger = logger;
+            this.gamesService = gamesService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var games = gamesService.GetAll();
+            return View(games);
         }
 
         public IActionResult Privacy()
