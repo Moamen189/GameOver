@@ -21,7 +21,7 @@ namespace GameOver.Services
 
         public IEnumerable<Game> GetAll()
         {
-            return context.Games.AsNoTracking().ToList();
+            return context.Games.Include(x => x.Name).AsNoTracking().ToList();
 			
         }
         public async Task Create(CreateGameViewModel model)
