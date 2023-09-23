@@ -28,6 +28,11 @@ namespace GameOver.Controllers
         public IActionResult Details(int id)
         {
             var game = gamesService.GetByID(id);
+            if (game is null)
+            {
+
+                return NotFound();
+            }
             return View(game);
 
         }

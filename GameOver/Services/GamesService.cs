@@ -1,6 +1,7 @@
 ﻿using GameOver.Models;
 using GameOver.Settings;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameOver.Services
 {
@@ -21,8 +22,13 @@ namespace GameOver.Services
 
         public IEnumerable<Game> GetAll()
         {
-            return context.Games.Include(x => x.Name).Include(y => y.Devices).ThenInclude(d => d.Device).AsNoTracking().ToList();
-			
+            return context.Games
+           .Include(g => g.Category)
+           .Include(g => g.Devices)
+           .ThenInclude(d => d.Device)
+           .AsNoTracking()
+           .ToList();
+
         }
         public async Task Create(CreateGameViewModel model)
 		{
