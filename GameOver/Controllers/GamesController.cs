@@ -1,4 +1,5 @@
 ﻿using GameOver.Services;
+using Microsoft.AspNetCore.Mvc.Razor.Compilation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GameOver.Controllers
@@ -21,6 +22,14 @@ namespace GameOver.Controllers
         {
             var games = gamesService.GetAll();
             return View(games);
+        }
+
+
+        public IActionResult Details(int id)
+        {
+            var game = gamesService.GetByID(id);
+            return View(game);
+
         }
         //Data Seeeding
         [HttpGet]

@@ -48,6 +48,9 @@ namespace GameOver.Services
 				 
 		}
 
-
+        public Game? GetByID(int id)
+        {
+            return context.Games.Include(x => x.Name).Include(y => y.Devices).ThenInclude(d => d.Device).AsNoTracking().SingleOrDefault(g => g.Id == id);
+        }
     }
 }

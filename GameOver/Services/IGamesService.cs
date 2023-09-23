@@ -6,6 +6,8 @@ namespace GameOver.Services
 	{
 		Task Create(CreateGameViewModel model);
 
+		Game? GetByID(int id);
+
 		IEnumerable<Game> GetAll();
 	}
 }
