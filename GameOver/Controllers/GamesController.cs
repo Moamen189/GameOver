@@ -82,6 +82,20 @@ namespace GameOver.Controllers
             {
                 return NotFound();
             }
+
+            EditGameFormViewModel viewModel = new()
+            {
+                Id = id,
+                Name = game.Name,
+                Description = game.Description,
+                CategoryId = game.CategoryId,
+                SelectedDevices = game.Devices.Select(d => d.DeviceId).ToList(),
+                Categories = categoriesService.GetSelectList(),
+                Devices = devicesService.GetSelectList(),
+                CurrentCover = game.Cover
+            };
+
+            return View(viewModel);
         }
     }
 }
