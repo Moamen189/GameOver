@@ -70,5 +70,18 @@ namespace GameOver.Controllers
             await gamesService.Create(model);
             return RedirectToAction(nameof(Index));
         }
+
+
+        [HttpGet]
+
+        public IActionResult Edit(int id)
+        {
+            var game  = gamesService.GetByID(id);
+
+             if (game is null)
+            {
+                return NotFound();
+            }
+        }
     }
 }
