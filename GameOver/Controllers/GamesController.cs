@@ -125,7 +125,9 @@ namespace GameOver.Controllers
 
         public IActionResult Delete(int id)
         {
-            return Ok();
+            var isDeleted = gamesService.Delete(id);
+
+            return isDeleted ? Ok() : BadRequest();
         }
 
 
