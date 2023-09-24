@@ -55,7 +55,7 @@ namespace GameOver.Services
 
         public async Task<Game?> Update(EditGameFormViewModel model)
         {
-			var game = context.Games.Find(model.Id);
+			var game = context.Games.Include(x => x.Devices).SingleOrDefault(g => g.Id  == model.Id);
 
 			if (game is null)
 			{
