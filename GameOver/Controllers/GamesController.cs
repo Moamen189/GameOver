@@ -114,7 +114,10 @@ namespace GameOver.Controllers
                 model.Devices = context.Devices.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name, }).ToList();
                 return View(model);
             }
-            await gamesService.Update(model);
+            var game = await gamesService.Update(model);
+
+            if (game is  null)
+            { return BadRequest(); }
             return RedirectToAction(nameof(Index));
         }
 
