@@ -125,7 +125,7 @@ namespace GameOver.Controllers
 
         public IActionResult Delete(int id)
         {
-            return View();
+            return Ok();
         }
 
 

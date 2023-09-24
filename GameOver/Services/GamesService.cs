@@ -104,5 +104,27 @@ namespace GameOver.Services
 
 			return CoverName ;
         }
+
+        public bool Delete(int id)
+        {
+			var isDeleted = false;
+
+			var game = context.Games.Find(id);
+
+			if(game is null)
+			{
+				return isDeleted;
+			}
+
+			var affectefRows = context.SaveChanges();
+            if ( affectefRows > 0)
+            {
+				var cover = Path.Combine(_ImagePath , game.Cover)
+				; File.Delete(cover);
+                
+            }
+            context.Games.Remove(game);
+			return isDeleted;
+        }
     }
 }

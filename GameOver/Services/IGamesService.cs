@@ -9,5 +9,7 @@ namespace GameOver.Services
 		Game? GetByID(int id);
 
 		IEnumerable<Game> GetAll();
+
+		bool Delete(int id);
 	}
 }
