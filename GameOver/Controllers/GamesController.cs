@@ -121,5 +121,13 @@ namespace GameOver.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpDelete]
+
+        public IActionResult Delete(int id)
+        {
+            return View();
+        }
+
+
     }
 }
