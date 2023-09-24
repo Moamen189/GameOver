@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GameOver.Services
 {
-	public class GamesService : IGamesService
+    public class GamesService : IGamesService
 	{
 		private readonly ApplicationDbContext context;
 		private readonly IWebHostEnvironment webHostEnvironment;
@@ -33,13 +33,7 @@ namespace GameOver.Services
         public async Task Create(CreateGameViewModel model)
 		{
 			//guid with extension
-			var CoverName = $"{Guid.NewGuid()}{Path.GetExtension(model.Cover.FileName)}";
-
-			var path = Path.Combine(_ImagePath , CoverName) ;
-
-			using var stream = File.Create(path) ;
-
-			await model.Cover.CopyToAsync(stream) ;
+			var CoverName = await SaveCover(model.Cover);
 
 			Game game = new()
 			{
@@ -57,6 +51,58 @@ namespace GameOver.Services
         public Game? GetByID(int id)
         {
             return context.Games.Include(x => x.Name).Include(y => y.Devices).ThenInclude(d => d.Device).AsNoTracking().SingleOrDefault(g => g.Id == id);
+        }
+
+        public async Task<Game?> Update(EditGameFormViewModel model)
+        {
+			var game = context.Games.Find(model.Id);
+
+			if (game is null)
+			{
+				return null;
+			}
+			var hasNewCover = model.Cover is not null;
+			var oldCover = game.Cover;
+			game.Name = model.Name;
+			game.Description = model.Description;
+			game.CategoryId = model.CategoryId;
+			game.Devices = model.SelectedDevices.Select(d => new GameDevice {DeviceId = d}).ToList();
+
+			if(hasNewCover)
+			{
+				game.Cover = await SaveCover(model.Cover!);
+			}
+
+			var affectefRows = context.SaveChanges();
+			if(affectefRows > 0) {
+
+				if (hasNewCover)
+				{
+					var cover = Path.Combine(_ImagePath, oldCover);
+					File.Delete(cover);
+				}
+				return game;
+
+			}
+			else
+			{
+                var cover = Path.Combine(_ImagePath, game.Cover);
+                File.Delete(cover);
+				return null;
+            }
+        }
+
+		public async Task<string> SaveCover(IFormFile Cover)
+		{
+            var CoverName = $"{Guid.NewGuid()}{Path.GetExtension(Cover.FileName)}";
+
+            var path = Path.Combine(_ImagePath, CoverName);
+
+            using var stream = File.Create(path);
+
+            await Cover.CopyToAsync(stream);
+
+			return CoverName ;
         }
     }
 }
